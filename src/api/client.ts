@@ -1,4 +1,4 @@
-'user server';
+'use server';
 
 import { CharacterType } from "../app/types/characters";
 

@@ -9,23 +9,40 @@ interface GameClienteProps {
 }
 
 export const GameClient = ({initialCharacters}: GameClienteProps) => {
-
+    const [characters, setCharacters] = useState<CharacterType[]>(initialCharacters);
+    const [score, setScore] = useState<number>(0);
+    const [maxScore, setMaxScore] = useState<number>(0);
 
     //function shuffle
     //function restart game
     //function onImageClick
     //function setScore
 
-    function onImage(character: CharacterType) {
-        
+    function onImageClick(character: CharacterType) {
+        setCharacters((prevCharacters) => {
+            return prevCharacters.map((prevCharacter) => {
+                if (prevCharacter.id === character.id) {
+                    return {...prevCharacter, wasClicked: true};
+                }
+                return prevCharacter;
+            });
+        });
     }
 
     return(
         <div>
+
+            <div >
+                <span>Score: {score}</span>
+                <span>Max score: {maxScore}</span>
+            </div>
             <ul>
-                {initialCharacters.map((character)=>{
+                {characters.map((character)=>{
                     return(
-                        <ImageCard character={character}
+                        <ImageCard 
+                        key={character.id}
+                            character={character}
+                            clickHandler={(()=> onImageClick(character))}
                          />
                     )
                 })}
