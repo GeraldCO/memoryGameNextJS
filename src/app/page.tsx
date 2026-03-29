@@ -1,4 +1,4 @@
-import GameClient from "./GameClient";
+import { GameClient } from "./components/GameClient"; 
 import fetchCharacter from "../api/client";
 
 export default async function Home() {
@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <main>
-      <GameClient characters={characters} />
-    </main>
+      <GameClient initialCharacters={characters} />
+    </main> 
   );
 }
